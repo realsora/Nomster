@@ -26,22 +26,15 @@ ActiveRecord::Schema.define(version: 2019_10_25_035155) do
     t.index ["user_id", "place_id"], name: "index_comments_on_user_id_and_place_id"
   end
 
-  create_table "installs", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_installs_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true
-  end
-
   create_table "photos", force: :cascade do |t|
+    t.text "caption"
+    t.integer "place_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
+    t.index ["place_id"], name: "index_photos_on_place_id"
+    t.index ["user_id", "place_id"], name: "index_photos_on_user_id_and_place_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -62,6 +55,11 @@ ActiveRecord::Schema.define(version: 2019_10_25_035155) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
