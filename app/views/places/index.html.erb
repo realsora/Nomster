@@ -41,7 +41,7 @@
   <i><%= place.address %></i> <br/>
   <p><%= place.description %></p> <br/>
 
-<% if place.user.present? %>
+  <% if place.user.present? %>
   <small><%= place.user.email %></small>
   <% end %>
 
@@ -49,7 +49,7 @@
   <% if place.photos.present? %>
   <div>
     <%=image_tag place.photos.last.picture.to_s%>
-</div>
+  </div>
   <% end %>
   </div>
 
